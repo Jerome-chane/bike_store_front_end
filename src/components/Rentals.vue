@@ -36,7 +36,7 @@
         </p>
         <p id="total_price" v-if="this.cart.length>0">Total: {{total}}€</p>
 
-        <p v-if="this.cart.length==0" class="alert alert-info">Your shopping cart is empty</p>
+        <p v-if="this.cart.length==0" class="alert alert-info">Your renting cart is empty</p>
         <br />
         <div class="actions">
           <p class="btn btn-info" @click="goBack">Go Back</p>

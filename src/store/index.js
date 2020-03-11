@@ -107,8 +107,8 @@ export default new Vuex.Store({
       console.log("login run");
       return new Promise((resolve, reject) => {
         let ourData = { email: getters.email, pwd: getters.password };
-        // return fetch(`${api}/api/login`, {
-        return fetch(`/api/login`, {
+        return fetch(`${api}/api/login`, {
+          // return fetch(`/api/login`, {
           credentials: "include",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -170,12 +170,11 @@ export default new Vuex.Store({
         })
         .catch(error => console.log("Error ", error));
     },
-
     getBikes({ commit }) {
       return new Promise((resolve, reject) => {
         // fetch run when Home is Loaded. returns a promise
-        // return fetch(`${api}/api/bikes`, {
-        return fetch(`/api/bikes`, {
+        return fetch(`${api}/api/bikes`, {
+          // return fetch(`/api/bikes`, {
           credentials: "include"
         })
           .then(data => {
@@ -210,8 +209,8 @@ export default new Vuex.Store({
     rent({ getters, commit }) {
       let data = getters.cart;
       let duration = getters.duration;
-      // fetch(`${api}/rent/${duration}/days`, {
-      fetch(`/rent/${duration}/days`, {
+      fetch(`${api}/rent/${duration}/days`, {
+        // fetch(`/rent/${duration}/days`, {
         credentials: "include",
         headers: {
           "Content-Type": "application/json"
@@ -232,8 +231,8 @@ export default new Vuex.Store({
         .catch(error => console.log(error));
     },
     getMyRentals({ commit, getters }) {
-      // fetch(`${api}/my-rentals`, {
-      fetch(`/my-rentals`, {
+      fetch(`${api}/my-rentals`, {
+        // fetch(`/my-rentals`, {
         credentials: "include"
       })
         .then(data => {
@@ -248,8 +247,8 @@ export default new Vuex.Store({
     },
     returnBike({ dispatch }, payload) {
       let duration = payload.duration;
-      // fetch(`${api}/return/rental/${payload.rental}`, {
-      fetch(`/return/rental/${payload.rental}/`, {
+      fetch(`${api}/return/rental/${payload.rental}`, {
+        // fetch(`/return/rental/${payload.rental}/`, {
         credentials: "include",
         headers: {
           "Content-Type": "application/json"

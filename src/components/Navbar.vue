@@ -31,7 +31,8 @@
         </li>
         <li>
           <a v-if="!user" class="nav-link" @click="logIn">Log In</a>
-          <a v-if="user" class="nav-link" @click="logOut">Log Out</a>
+          <!-- v-if="user" -->
+          <a class="nav-link" @click="logOut">Log Out</a>
         </li>
       </ul>
     </nav>

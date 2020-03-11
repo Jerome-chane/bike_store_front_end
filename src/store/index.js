@@ -2,9 +2,10 @@ import Vue from "vue";
 import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 Vue.use(Vuex);
+import api from "../back_end";
 
 export default new Vuex.Store({
-  plugins: [createPersistedState()],
+  // plugins: [createPersistedState()],
   state: {
     bikes: [],
     myRentals: null,
@@ -74,7 +75,8 @@ export default new Vuex.Store({
         role: payload.role
       };
 
-      fetch(`api/signup`, {
+      fetch(`${api}/api/signup`, {
+        // fetch(`/api/signup`, {
         credentials: "include",
         headers: {
           "Content-Type": "application/json"
@@ -103,9 +105,11 @@ export default new Vuex.Store({
         });
     },
     login({ getters, commit, dispatch }) {
+      console.log("login run");
       return new Promise((resolve, reject) => {
         let ourData = { email: getters.email, pwd: getters.password };
-        return fetch(`/api/login`, {
+        return fetch(`${api}/api/login`, {
+          // return fetch(`/api/login`, {
           credentials: "include",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -114,7 +118,8 @@ export default new Vuex.Store({
           body: getBody(ourData)
         })
           .then(data => {
-            if (data.status == 200) {
+            console.log(data);
+            if (data.ok) {
               commit("setLoginForm", false);
               commit("setRegisterForm", false);
               commit("syncLogged", true);
@@ -124,6 +129,7 @@ export default new Vuex.Store({
             // console.log("Log status", getters.logged);
           })
           .then(newData => {
+            console.log(newData);
             dispatch("getBikes");
             try {
               return resolve({ status: "success" });
@@ -146,7 +152,8 @@ export default new Vuex.Store({
       });
     },
     logout({ commit }) {
-      fetch(`api/logout`, {
+      fetch(`${api}/api/logout`, {
+        // fetch(`${api}/api/logout`, {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded"
         },
@@ -167,7 +174,8 @@ export default new Vuex.Store({
     getBikes({ commit }) {
       return new Promise((resolve, reject) => {
         // fetch run when Home is Loaded. returns a promise
-        return fetch(`api/bikes`, {
+        return fetch(`${api}/api/bikes`, {
+          // return fetch(`/api/bikes`, {
           credentials: "include"
         })
           .then(data => {
@@ -203,7 +211,8 @@ export default new Vuex.Store({
       let data = getters.cart;
       let duration = getters.duration;
 
-      fetch(`rent/${duration}/days`, {
+      fetch(`${api}/rent/${duration}/days`, {
+        // fetch(`/rent/${duration}/days`, {
         credentials: "include",
         headers: {
           "Content-Type": "application/json"
@@ -224,7 +233,8 @@ export default new Vuex.Store({
         .catch(error => console.log(error));
     },
     getMyRentals({ commit, getters }) {
-      fetch(`my-rentals`, {
+      fetch(`${api}/my-rentals`, {
+        // fetch(`/my-rentals`, {
         credentials: "include"
       })
         .then(data => {
@@ -241,7 +251,8 @@ export default new Vuex.Store({
     },
     returnBike({ dispatch }, payload) {
       let duration = payload.duration;
-      fetch(`return/rental/${payload.rental}`, {
+      fetch(`${api}/return/rental/${payload.rental}`, {
+        // fetch(`/return/rental/${payload.rental}`, {
         credentials: "include",
         headers: {
           "Content-Type": "application/json"

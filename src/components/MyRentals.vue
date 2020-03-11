@@ -1,8 +1,15 @@
 <template>
   <div>
     <NavBar />
+    <br />
     <div class="container">
       <h1>My Rentals</h1>
+      <p
+        v-if="logged != true && user == null"
+        class="alert alert-info"
+      >You must be logged to see your rentals</p>
+    </div>
+    <div class="container" v-if="logged&&user">
       <p v-if="myRentals.length ==0 " class="alert alert-info">You have no rentals to see</p>
       <div class="container" v-if="myRentals.length >0 ">
         <div v-for="(rental,index) in myRentals" :key="index" class="rentals">
@@ -49,7 +56,7 @@ export default {
     return {};
   },
   components: { NavBar },
-  computed: { ...mapGetters(["myRentals"]) },
+  computed: { ...mapGetters(["myRentals", "logged", "user"]) },
   methods: {
     returnBike(rental_id) {
       this.$prompt("what is the duration? ").then(text => {
@@ -61,7 +68,9 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch("getMyRentals");
+    if (this.logged) {
+      this.$store.dispatch("getMyRentals");
+    }
   }
 };
 </script>

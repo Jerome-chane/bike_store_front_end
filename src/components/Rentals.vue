@@ -63,7 +63,6 @@ export default {
   },
   computed: {
     ...mapGetters(["cart", "duration"]),
-
     total() {
       // Calculates the total price based on each product price and quantity
       this.tot = 0;
@@ -76,6 +75,8 @@ export default {
   methods: {
     buy() {
       this.$store.dispatch("rent");
+      this.day = 0;
+      this.day = 1;
     },
     goBack() {
       this.$router.push("/");

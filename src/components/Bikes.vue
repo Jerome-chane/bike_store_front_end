@@ -28,11 +28,19 @@ export default {
   components: { NavBar },
   methods: {
     add(bike) {
-      this.$store.commit("addToCart", bike);
+      let duplicate = false;
+      this.cart.forEach(element => {
+        if (element.model == bike.model) {
+          duplicate = true;
+        }
+      });
+      if (duplicate == false) {
+        this.$store.commit("addToCart", bike);
+      }
     }
   },
   computed: {
-    ...mapGetters(["bikes", "user"])
+    ...mapGetters(["bikes", "user", "cart"])
   },
   created() {
     this.$store.dispatch("getBikes").then(response => {

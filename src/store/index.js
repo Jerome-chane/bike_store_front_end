@@ -176,7 +176,7 @@ export default new Vuex.Store({
         // fetch run when Home is Loaded. returns a promise
         return fetch(`${api}/api/bikes`, {
           // return fetch(`/api/bikes`, {
-          credentials: "include"
+          // credentials: "include"
         })
           .then(data => {
             if (data.ok) {

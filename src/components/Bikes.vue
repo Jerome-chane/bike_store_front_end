@@ -6,8 +6,8 @@
         <div class="single_product">
           <img v-bind:src="bike.image" class="img" />
           <p>{{bike.model}}</p>
-          <p>Category: {{bike.brand}}</p>
-          <p>{{bike.type}}</p>
+          <p>{{bike.brand}}</p>
+          <p>Category: {{bike.type}}</p>
           <p>Available: {{bike.inventory}}</p>
           <p>Price: {{bike.base_price}}€</p>
 

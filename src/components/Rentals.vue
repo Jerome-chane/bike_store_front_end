@@ -13,8 +13,8 @@
             </div>
             <div class="col-4">
               <p>{{bike.model}}</p>
-              <p>Category: {{bike.brand}}</p>
-              <p>{{bike.type}}</p>
+              <p>{{bike.brand}}</p>
+              <p>Category: {{bike.type}}</p>
               <p>Available: {{bike.inventory}}</p>
             </div>
 

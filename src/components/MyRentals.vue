@@ -23,7 +23,7 @@
               <span v-for="(qty,id) in rental.quantities" :key="id">
                 <p>{{qty}}</p>
               </span>
-              <p>Duration: {{rental.start_duration}} days</p>
+              <p>Start Duration: {{rental.start_duration}} days</p>
               <p v-if="rental.final_duration">Final Duration: {{rental.final_duration}} days</p>
               <p>Start Price:{{rental.start_price}} €</p>
               <p v-if="rental.final_price">Final Price:{{rental.final_price}} €</p>
